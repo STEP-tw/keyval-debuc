@@ -136,39 +136,39 @@ describe("single values with quotes",function(){
 
   it("parse a single value with quotes",function(){
     let expected={key:"value"};
-    assert.deepEqual(expected,kvParser.parse("key=\"value\""));
+    chai.ownInclude(kvParser.parse("key=\"value\""),expected);
   });
 
   it("parse a single quoted value that has spaces in it",function(){
     let expected={key:"va lue"};
-    assert.deepEqual(expected,kvParser.parse("key=\"va lue\""));
+    chai.ownInclude(kvParser.parse("key=\"va lue\""),expected);
   });
 
   it("parse a single quoted value that has spaces in it and leading spaces",function(){
     let expected={key:"va lue"};
-    assert.deepEqual(expected,kvParser.parse("key=   \"va lue\""));
+    chai.ownInclude(kvParser.parse("key=   \"va lue\""),expected);
   });
 
   it("parse a single quoted value that has spaces in it and trailing spaces",function(){
     let expected={key:"va lue"};
-    assert.deepEqual(expected,kvParser.parse("key=\"va lue\"   "));
+    chai.ownInclude(kvParser.parse("key=\"va lue\"   "),expected);
   });
 });
 
 describe("multiple values with quotes",function(){
   it("parse more than one value with quotes",function(){
     let expected={key:"va lue",anotherkey:"another value"};
-    assert.deepEqual(expected,kvParser.parse("key=\"va lue\" anotherkey=\"another value\""));
+    chai.ownInclude(kvParser.parse("key=\"va lue\" anotherkey=\"another value\""),expected);
   });
 
   it("parse more than one value with quotes with leading spaces",function(){
     let expected={key:"va lue",anotherkey:"another value"};
-    assert.deepEqual(expected,kvParser.parse("key= \"va lue\" anotherkey= \"another value\""));
+    chai.ownInclude(kvParser.parse("key= \"va lue\" anotherkey= \"another value\""),expected);
   });
 
   it("parse more than one value with quotes when keys have trailing spaces",function(){
     let expected={key:"va lue",anotherkey:"another value"};
-    assert.deepEqual(expected,kvParser.parse("key = \"va lue\" anotherkey = \"another value\""));
+    chai.ownInclude(kvParser.parse("key = \"va lue\" anotherkey = \"another value\""),expected);
   });
 });
 
