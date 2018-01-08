@@ -21,39 +21,40 @@ describe("parse basic key values",function(){
 
   it("parses an empty string",function(){
     let actual=kvParser.parse("");
-    chai.equal(0,actual.length());
+    chai.equal(actual.length(),0);
   });
 
   it("parse key=value",function(){
     let actual=kvParser.parse("key=value");
-    assert.equal("value",actual.key);
-    assert.equal(1,actual.length());
+    chai.equal("value",actual.key);
+    chai.equal(actual.length(),1);
   });
 
   it("parse when there are leading spaces before key",function(){
     let actual=kvParser.parse(" key=value");
-    let expected = {'key':'value'};
-    assert.deepEqual(expected,kvParser.parse(" key=value"));
+    let expected={key:"value"};
+    chai.include(actual,expected);
+    chai.notInclude(actual,{' key':'value'})
   });
 
   it("parse when there are spaces after key",function(){
     let expected={key:"value"};
-    assert.deepEqual(expected,kvParser.parse("key =value"));
+    chai.include(kvParser.parse("key =value"),expected);
   });
 
   it("parse when there are spaces before and after key",function(){
     let expected={key:"value"};
-    assert.deepEqual(expected,kvParser.parse(" key =value"));
+    chai.include(kvParser.parse(" key =value"),expected);
   });
 
   it("parse when there are spaces before value",function(){
     let expected={key:"value"};
-    assert.deepEqual(expected,kvParser.parse("key= value"));
+    chai.include(kvParser.parse("key= value"),expected);
   });
 
   it("parse when there are spaces after value",function(){
     let expected={key:"value"};
-    assert.deepEqual(expected,kvParser.parse("key=value "));
+    chai.include(kvParser.parse("key=value "),expected);
   });
 });
 
