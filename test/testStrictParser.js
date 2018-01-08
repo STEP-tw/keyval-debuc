@@ -1,8 +1,7 @@
 const src=function(filePath){return "../src/"+filePath};
 const errors=function(filePath){return "../src/errors/"+filePath};
 
-const assert=require('assert');
-const chai = require('chai').assert;
+const assert = require('chai').assert;
 
 const StrictParser=require(src('index.js')).StrictParser;
 const Parsed = require(src('parsed.js'));
@@ -19,7 +18,7 @@ var invalidKeyErrorChecker=function(key,pos) {
 describe("strict parser",function(){
   it("should only parse keys that are specified for a single key",function(){
     let kvParser=new StrictParser(["name"]);
-    chai.throws(
+    assert.throws(
       () => {
         try{
           var p=kvParser.parse("age=23");
@@ -37,8 +36,8 @@ describe("strict parser",function(){
     expected.name = 'john';
     expected.age = '23';
 
-    chai.deepEqual(expected,actual);
-    chai.throws(
+    assert.deepEqual(expected,actual);
+    assert.throws(
       () => {
         try{
           var p=kvParser.parse("color=blue");
@@ -49,7 +48,7 @@ describe("strict parser",function(){
   });
 
   it("should throw an error when one of the keys is not valid",function(){
-    chai.throws(
+    assert.throws(
       () => {
         try{
           let kvParser=new StrictParser(["name","age"]);
