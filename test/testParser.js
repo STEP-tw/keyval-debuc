@@ -89,17 +89,17 @@ describe("parse digits and other special chars",function(){
 
   it("parse keys with multiple underscores",function(){
     let expected={'__':"value"};
-    chai.ownInclude(expected,kvParser.parse("__=value"));
+    chai.ownInclude(kvParser.parse("__=value"),expected);
   });
 
   it("parse keys with alphabets and digits(digits leading)",function(){
     let expected={'0abc':"value"};
-    chai.ownInclude(expected,kvParser.parse("0abc=value"));
+    chai.ownInclude(kvParser.parse("0abc=value"),expected);
   });
 
   it("parse keys with alphabets and digits(alphabets leading)",function(){
     let expected={'a0bc':"value"};
-    chai.ownInclude(expected,kvParser.parse("a0bc=value"));
+    chai.ownInclude(kvParser.parse("a0bc=value"),expected);
   });
 });
 
@@ -110,22 +110,22 @@ describe("multiple keys",function(){
 
   it("parse more than one key",function(){
     let expected={key:"value",anotherkey:"anothervalue"};
-    assert.deepEqual(expected,kvParser.parse("key=value anotherkey=anothervalue"));
+    chai.ownInclude(kvParser.parse("key=value anotherkey=anothervalue"),expected);
   });
 
   it("parse more than one key when keys have leading spaces",function(){
     let expected={key:"value",anotherkey:"anothervalue"};
-    assert.deepEqual(expected,kvParser.parse("   key=value anotherkey=anothervalue"));
+    chai.ownInclude(kvParser.parse("   key=value anotherkey=anothervalue"),expected);
   });
 
   it("parse more than one key when keys have trailing spaces",function(){
     let expected={key:"value",anotherkey:"anothervalue"};
-    assert.deepEqual(expected,kvParser.parse("key  =value anotherkey  =anothervalue"));
+    chai.ownInclude(kvParser.parse("key  =value anotherkey  =anothervalue"),expected);
   });
 
   it("parse more than one key when keys have leading and trailing spaces",function(){
     let expected={key:"value",anotherkey:"anothervalue"};
-    assert.deepEqual(expected,kvParser.parse("  key  =value anotherkey  =anothervalue"));
+    chai.ownInclude(kvParser.parse("  key  =value anotherkey  =anothervalue"),expected);
   });
 });
 
