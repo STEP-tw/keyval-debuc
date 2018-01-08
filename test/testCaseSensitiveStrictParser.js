@@ -1,6 +1,7 @@
 const src=function(filePath){return "../src/"+filePath};
 
 const assert=require('chai').assert;
+
 const Parsed=require(src('parsed.js'));
 const StrictParser=require(src('index.js')).StrictParser;
 
